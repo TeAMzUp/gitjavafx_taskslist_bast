@@ -8,7 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -22,6 +25,8 @@ import javafx.stage.Stage;
 
 import java.sql.*;
 import java.util.List;
+import java.util.Optional;
+
 import com.dieselpoint.norm.Database;
 
 import ResetThosePacks.TestMyDB;
@@ -39,6 +44,7 @@ public class App extends Application {
 	public TextField text = new TextField();
 	public Button btn = new Button ("<- Add Task");
 	public Button btn2 = new Button ("Toggle Selected Task Done/Undone");
+	public Button btn3 = new Button ("Delete task from DB");
 	public ListView<TestMyDB> listView = new ListView();
 	
     public Database db = new Database();
@@ -63,6 +69,7 @@ public class App extends Application {
         box.getChildren().add(btn2);
         box.getChildren().add(text);
         box.getChildren().add(btn);
+        box.getChildren().add(btn3);
         root.setCenter(listView);
         root.setBottom(box);
         box.setPadding(new Insets(30));
@@ -71,6 +78,7 @@ public class App extends Application {
         //btn.setPrefSize(50,50);
         btn.setOnAction(new HandleClick());
         btn2.setOnAction(new handle2());
+        btn3.setOnAction(new handle3());
         
         db.setJdbcUrl("jdbc:mysql://localhost:3306/java?useSSL=false");
         db.setUser("root");
@@ -149,6 +157,38 @@ public class App extends Application {
             		//changed DoneT column in DB to false
             		changedTask.DoneT=false;
             		db.update(changedTask);
+            	}
+            }
+        	
+        	List<TestMyDB> msgs = db.results(TestMyDB.class);
+        	listView.setItems(FXCollections.observableArrayList(msgs));
+        }
+    }
+    
+    class handle3 implements EventHandler<ActionEvent> {
+        @Override
+        public void handle(ActionEvent event) {
+        	System.out.println(event.getEventType()); // affiche le type de l'event
+        	System.out.println(event.getTarget()); // affiche la source de l'event
+        	
+        	//Database db2 = new Database();
+            db.setJdbcUrl("jdbc:mysql://localhost:3306/java?useSSL=false");
+            db.setUser("root");
+            db.setPassword("");
+            
+            if (changedTask != null) {
+            	//Supprimer
+            	Alert alert = new Alert(AlertType.CONFIRMATION);
+            	alert.setTitle("Confirmation Dialog");
+            	alert.setHeaderText(null);
+            	alert.setContentText("Are you sure you want to delete this task?");
+
+            	Optional<ButtonType> result = alert.showAndWait();
+            	if (result.get() == ButtonType.OK){
+            	    // ... user chose OK
+            		db.delete(changedTask);
+            	} else {
+            	    // ... user chose CANCEL or closed the dialog
             	}
             }
         	
