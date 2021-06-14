@@ -71,7 +71,7 @@ public class App extends Application {
         //btn.setPrefSize(50,50);
         btn.setOnAction(new HandleClick());
         HandleClick handle2 = new HandleClick();
-        btn2.setOnAction(new HandleClick());
+        btn2.setOnAction(new handle2());
         
         db.setJdbcUrl("jdbc:mysql://localhost:3306/java?useSSL=false");
         db.setUser("root");
@@ -122,19 +122,19 @@ public class App extends Application {
             	db.insert(tempTask);
             }
             
-            else if (x1Full == "" && changedTask != null) {
-            	if (changedTask.DoneT == false) {
-            		//changed DoneT column in DB to true
-            		changedTask.DoneT=true;
-            		db.update(changedTask);
-            	}
-            	else {
-            		//changedTask.DoneT = false;
-            		//changed DoneT column in DB to false
-            		changedTask.DoneT=false;
-            		db.update(changedTask);
-            	}
-            }
+//            else if (x1Full == "" && changedTask != null) {
+//            	if (changedTask.DoneT == false) {
+//            		//changed DoneT column in DB to true
+//            		changedTask.DoneT=true;
+//            		db.update(changedTask);
+//            	}
+//            	else {
+//            		//changedTask.DoneT = false;
+//            		//changed DoneT column in DB to false
+//            		changedTask.DoneT=false;
+//            		db.update(changedTask);
+//            	}
+//            }
         	
         	List<TestMyDB> msgs = db.results(TestMyDB.class);
         	listView.setItems(FXCollections.observableArrayList(msgs));
@@ -159,7 +159,7 @@ public class App extends Application {
             TestMyDB tempTask = new TestMyDB();
             tempTask.NomT = x1Full;
             
-            if (x1Full == "" && changedTask != null) {
+            if (changedTask != null) {
             	if (changedTask.DoneT == false) {
             		//changed DoneT column in DB to true
             		changedTask.DoneT=true;
