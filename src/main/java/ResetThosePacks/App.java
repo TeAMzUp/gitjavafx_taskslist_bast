@@ -37,8 +37,8 @@ import javafx.event.EventHandler;
 public class App extends Application {
 
 	public TextField text = new TextField();
-	public Button btn = new Button ("Add Task");
-	public Button btn2 = new Button ("Done / Not Done");
+	public Button btn = new Button ("<- Add Task");
+	public Button btn2 = new Button ("Toggle Selected Task Done/Undone");
 	public ListView<TestMyDB> listView = new ListView();
 	
     public Database db = new Database();
@@ -106,12 +106,12 @@ public class App extends Application {
         public void handle(ActionEvent event) {
         	System.out.println(event.getEventType()); // affiche le type de l'event
         	System.out.println(event.getTarget()); // affiche la source de l'event
-        	
         	//Button btn = (Button) event.getSource();
+        	
         	String x1Full = text.getText();
         	System.out.println(x1Full);
         	
-//        	Database db2 = new Database();
+        	//Database db2 = new Database();
             db.setJdbcUrl("jdbc:mysql://localhost:3306/java?useSSL=false");
             db.setUser("root");
             db.setPassword("");
@@ -133,17 +133,10 @@ public class App extends Application {
         	System.out.println(event.getEventType()); // affiche le type de l'event
         	System.out.println(event.getTarget()); // affiche la source de l'event
         	
-        	//Button btn = (Button) event.getSource();
-        	String x1Full = text.getText();
-        	System.out.println(x1Full);
-        	
-//        	Database db2 = new Database();
+        	//Database db2 = new Database();
             db.setJdbcUrl("jdbc:mysql://localhost:3306/java?useSSL=false");
             db.setUser("root");
             db.setPassword("");
-            
-            TestMyDB tempTask = new TestMyDB();
-            tempTask.NomT = x1Full;
             
             if (changedTask != null) {
             	if (changedTask.DoneT == false) {
