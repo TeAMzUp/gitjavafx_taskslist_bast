@@ -51,10 +51,10 @@ public class App extends Application {
         var javafxVersion = SystemInfo.javafxVersion();
 
         //ListView listView = new ListView();
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+        //var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
         
-        var lbl = new Label("What doink");
-        var font = new Font(20);
+        //var lbl = new Label("What doink");
+        //var font = new Font(20);
         
         //btn.setFont(20);
         var root = new BorderPane();
@@ -70,7 +70,6 @@ public class App extends Application {
         //btn.setShape(new Circle(30));
         //btn.setPrefSize(50,50);
         btn.setOnAction(new HandleClick());
-        HandleClick handle2 = new HandleClick();
         btn2.setOnAction(new handle2());
         
         db.setJdbcUrl("jdbc:mysql://localhost:3306/java?useSSL=false");
@@ -97,6 +96,7 @@ public class App extends Application {
         });
         
         var scene = new Scene(root, 640, 480);
+        stage.setTitle("TasksList JavaFx");
         stage.setScene(scene);
         stage.show();
     }

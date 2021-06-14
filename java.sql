@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 -- Base de données : `java`
 --
 
+CREATE DATABASE IF NOT EXISTS java;
+
 -- --------------------------------------------------------
 
 --
@@ -65,7 +67,7 @@ INSERT INTO `testme` (`idT`, `NomT`, `DoneT`) VALUES
 (2, 'Install CODEBLOCKS', 1),
 (3, 'AVOID ECLIPSE AT ALL COSTS', 0),
 (4, 'Testing text', 1),
-(10, 'Test Done or not function', 1);
+(10, 'Test \'Toggle Done\' function', 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
