@@ -121,20 +121,6 @@ public class App extends Application {
             if (x1Full != "") {
             	db.insert(tempTask);
             }
-            
-//            else if (x1Full == "" && changedTask != null) {
-//            	if (changedTask.DoneT == false) {
-//            		//changed DoneT column in DB to true
-//            		changedTask.DoneT=true;
-//            		db.update(changedTask);
-//            	}
-//            	else {
-//            		//changedTask.DoneT = false;
-//            		//changed DoneT column in DB to false
-//            		changedTask.DoneT=false;
-//            		db.update(changedTask);
-//            	}
-//            }
         	
         	List<TestMyDB> msgs = db.results(TestMyDB.class);
         	listView.setItems(FXCollections.observableArrayList(msgs));
