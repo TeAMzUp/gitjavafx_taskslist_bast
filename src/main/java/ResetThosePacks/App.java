@@ -1,5 +1,9 @@
 package ResetThosePacks;
 
+import ResetThosePacks.TestMyDB;
+
+import ResetThosePacks.SystemInfo;
+
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,10 +33,6 @@ import java.util.Optional;
 
 import com.dieselpoint.norm.Database;
 
-import ResetThosePacks.TestMyDB;
-
-import ResetThosePacks.SystemInfo;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 
@@ -45,6 +45,7 @@ public class App extends Application {
 	public Button btn = new Button ("<- Add Task");
 	public Button btn2 = new Button ("Toggle Selected Task Done/Undone");
 	public Button btn3 = new Button ("Delete task from DB");
+	
 	public ListView<TestMyDB> listView = new ListView();
 	
     public Database db = new Database();
@@ -65,6 +66,7 @@ public class App extends Application {
         //btn.setFont(20);
         var root = new BorderPane();
         var box = new HBox();
+        //Button btn4 = new Button ("Delete task from DB");
         
         box.getChildren().add(btn2);
         box.getChildren().add(text);
@@ -146,7 +148,7 @@ public class App extends Application {
             db.setUser("root");
             db.setPassword("");
             
-            if (changedTask != null) {
+            if (changedTask != null && changedTask.idT > 0) {
             	if (changedTask.DoneT == false) {
             		//changed DoneT column in DB to true
             		changedTask.DoneT=true;
@@ -176,7 +178,7 @@ public class App extends Application {
             db.setUser("root");
             db.setPassword("");
             
-            if (changedTask != null) {
+            if (changedTask != null && changedTask.idT > 0) {
             	//Supprimer
             	Alert alert = new Alert(AlertType.CONFIRMATION);
             	alert.setTitle("Confirmation Dialog");
