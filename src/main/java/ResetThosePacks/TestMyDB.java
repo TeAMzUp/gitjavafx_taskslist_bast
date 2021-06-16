@@ -1,8 +1,8 @@
 package ResetThosePacks;
 
-import java.math.BigDecimal;
+//import java.math.BigDecimal;
 
-import javax.persistence.Column;
+//import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;

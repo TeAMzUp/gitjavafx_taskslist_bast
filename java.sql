@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `testme` (
 INSERT INTO `testme` (`idT`, `NomT`, `DoneT`) VALUES
 (1, 'Install NOTEPAD++', 1),
 (2, 'Install CODEBLOCKS', 1),
-(3, 'AVOID ECLIPSE AT ALL COSTS', 0),
+(3, 'Remove ECLIPSE', 0),
 (4, 'Testing text', 1),
 (10, 'Test \'Toggle Done\' function', 1);
 COMMIT;

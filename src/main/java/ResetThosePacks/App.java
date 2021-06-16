@@ -41,16 +41,20 @@ import javafx.event.EventHandler;
  */
 public class App extends Application {
 
-	public TextField text = new TextField();
-	public Button btn = new Button ("<- Add Task");
-	public Button btn2 = new Button ("Toggle Selected Task Done/Undone");
-	public Button btn3 = new Button ("Delete task from DB");
+	private TextField text = new TextField();
+	private Button btn = new Button ("<- Add Task");
+	private Button btn2 = new Button ("Toggle Selected Task Done/Undone");
+	private Button btn3 = new Button ("Delete task from DB");
 	
-	public ListView<TestMyDB> listView = new ListView();
+	private ListView<TestMyDB> listView = new ListView(); // needing this one public?
 	
-    public Database db = new Database();
+    private Database db = new Database();
     
-    public TestMyDB changedTask = new TestMyDB();
+    private TestMyDB changedTask = new TestMyDB();
+    //private BorderPane root7 = new BorderPane();
+    
+    private BorderPane root = new BorderPane();
+    private Scene scene = new Scene(root, 640, 480);
 	
 	@Override
     public void start(Stage stage) {
@@ -64,7 +68,7 @@ public class App extends Application {
         //var font = new Font(20);
         
         //btn.setFont(20);
-        var root = new BorderPane();
+        //var root = new BorderPane();
         var box = new HBox();
         //Button btn4 = new Button ("Delete task from DB");
         
@@ -72,7 +76,7 @@ public class App extends Application {
         box.getChildren().add(text);
         box.getChildren().add(btn);
         box.getChildren().add(btn3);
-        root.setCenter(listView);
+        //root.setCenter(listView);
         root.setBottom(box);
         box.setPadding(new Insets(30));
         
@@ -93,9 +97,9 @@ public class App extends Application {
         
         listView.setItems(FXCollections.observableArrayList(msgs));
         
+        //Not a ClickHandle(), but an addListener() on item selected
         //listView.selectionModelProperty().addListener(null);
         listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TestMyDB>() {
-
 			@Override
 			public void changed(ObservableValue<? extends TestMyDB> observable, TestMyDB oldValue, TestMyDB newValue) {
 				// TODO Auto-generated method stub
@@ -105,12 +109,15 @@ public class App extends Application {
 			}
         });
         
-        var scene = new Scene(root, 640, 480);
+        root.setCenter(listView);
+        
+        //var scene = new Scene(root, 640, 480);
         stage.setTitle("TasksList JavaFx");
         stage.setScene(scene);
         stage.show();
     }
     
+	//ClickHandle() on insert button
     class HandleClick implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -137,6 +144,7 @@ public class App extends Application {
         }
     }
     
+    //ClickHandle() on update button
     class handle2 implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -167,6 +175,7 @@ public class App extends Application {
         }
     }
     
+    //ClickHandle() on delete button
     class handle3 implements EventHandler<ActionEvent> {
         @Override
         public void handle(ActionEvent event) {
@@ -179,7 +188,6 @@ public class App extends Application {
             db.setPassword("");
             
             if (changedTask != null && changedTask.idT > 0) {
-            	//Supprimer
             	Alert alert = new Alert(AlertType.CONFIRMATION);
             	alert.setTitle("Confirmation Dialog");
             	alert.setHeaderText(null);
