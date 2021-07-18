@@ -1,8 +1,8 @@
 package ResetThosePacks;
 
-import ResetThosePacks.TestMyDB;
+//import ResetThosePacks.TestMyDB;
 
-import ResetThosePacks.SystemInfo;
+//import ResetThosePacks.SystemInfo;
 
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
@@ -16,25 +16,25 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
+//import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
+//import javafx.scene.layout.StackPane;
+//import javafx.scene.shape.Circle;
+//import javafx.scene.text.Font;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+//import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.sql.*;
+//import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 
 import com.dieselpoint.norm.Database;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+//import javafx.event.ActionEvent;
+//import javafx.event.EventHandler;
 
 /**
  * JavaFX App
@@ -58,8 +58,8 @@ public class App extends Application {
 	
 	@Override
     public void start(Stage stage) {
-    	var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
+    	//var javaVersion = SystemInfo.javaVersion();
+        //var javafxVersion = SystemInfo.javafxVersion();
 
         //ListView listView = new ListView();
         //var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
